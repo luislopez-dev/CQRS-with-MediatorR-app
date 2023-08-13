@@ -1,9 +1,15 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
 
 builder.Services.AddMediatR(
     config => config.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
-app.MapGet("/", () => "Hello World!");
+builder.Services.AddControllers();
+
+var app = builder.Build();
+
+app.MapControllers();
 
 app.Run();
