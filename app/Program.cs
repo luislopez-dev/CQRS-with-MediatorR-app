@@ -1,3 +1,4 @@
+using app.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -7,6 +8,7 @@ builder.Services.AddMediatR(
     config => config.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 builder.Services.AddControllers();
+builder.Services.AddSingleton<FakeDataStore>();
 
 var app = builder.Build();
 

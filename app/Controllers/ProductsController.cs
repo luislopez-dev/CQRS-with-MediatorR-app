@@ -1,4 +1,8 @@
-﻿using MediatR;
+﻿using System.Threading.Tasks;
+using app.Commands;
+using app.Entities;
+using app.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace app.Controllers;
@@ -12,6 +16,20 @@ public class ProductsController : ControllerBase
     public ProductsController(IMediator mediator)
     {
         _mediator = mediator;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult> GetProducts()
+    {
+        var products = await _mediator.Send(new GetProductsQuery());
+        return Ok(products);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> AddProduct([FromBody] Product product)
+    {
+        await _mediator.Send(new AddProductCommand(product));
+        return StatusCode(201);
     }
     
     
