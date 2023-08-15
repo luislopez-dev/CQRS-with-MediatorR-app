@@ -1,17 +1,22 @@
-using System.Threading;
-using System.Threading.Tasks;
 using app.Commands;
 using app.Data;
+using app.Entities;
 using MediatR;
 
 namespace app.Handlers;
 
-public class AddProductHandler: IRequestHandler<AddProductCommand>
-{
+public class AddProductHandler: IRequestHandler<AddProductCommand, Product>
+{    
     private readonly FakeDataStore _fakeDataStore;
-    
-    public async Task Handle(AddProductCommand request, CancellationToken cancellationToken)
+
+    public AddProductHandler(FakeDataStore fakeDataStore)
+    {
+        _fakeDataStore = fakeDataStore;
+    }
+
+    public async Task<Product> Handle(AddProductCommand request, CancellationToken cancellationToken)
     {
         await _fakeDataStore.AddProduct(request.Product);
+        return request.Product;
     }
 }

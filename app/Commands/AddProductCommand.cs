@@ -3,5 +3,4 @@ using MediatR;
 
 namespace app.Commands;
 
-public record AddProductCommand(Product Product): IRequest;
-
+public record AddProductCommand(Product Product): IRequest<Product>;
