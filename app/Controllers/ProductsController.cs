@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using app.Commands;
 using app.Entities;
+using app.Notifications;
 using app.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,8 @@ public class ProductsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> AddProduct([FromBody] Product product)
     {
-        await _mediator.Send(new AddProductCommand(product));
+        var producToReturn = await _mediator.Send(new AddProductCommand(product));
+        await _mediator.Publish(new ProductAddedNotification(producToReturn));
         return StatusCode(201);
     }
     
