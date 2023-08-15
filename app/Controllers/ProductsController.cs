@@ -33,6 +33,4 @@ public class ProductsController : ControllerBase
         await _mediator.Publish(new ProductAddedNotification(producToReturn));
         return StatusCode(201);
     }
-    
-    
 }
