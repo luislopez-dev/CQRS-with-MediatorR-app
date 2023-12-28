@@ -1,4 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿ /*
+ * Author: Luis López
+ * Website: https://github.com/luislopez-dev
+ * Description: Training Project
+ */
+ 
+using System.Threading.Tasks;
 using app.Commands;
 using app.Entities;
 using app.Notifications;

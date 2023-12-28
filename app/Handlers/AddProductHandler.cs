@@ -1,3 +1,9 @@
+ /*
+ * Author: Luis López
+ * Website: https://github.com/luislopez-dev
+ * Description: Training Project
+ */
+ 
 using app.Commands;
 using app.Data;
 using app.Entities;
